@@ -168,6 +168,7 @@
 <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spaces/">Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spaces_utils/">Spaces Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrappers/">Wrappers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vector/">Vector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a></li>
@@ -345,8 +346,7 @@ This might, for instance, contain: metrics that describe the agent’s performan
 hidden from observations, or individual reward terms that are combined to produce the total reward.
 It also can contain information that distinguishes truncation and termination, however this is deprecated in favour
 of returning two booleans, and will be removed in a future version.</p></li>
-<li><p><strong>(deprecated)</strong></p></li>
-<li><p><strong>done</strong> (<em>bool</em>) – A boolean value for if the episode has ended, in which case further <a class="reference internal" href="#gymnasium.Env.step" title="gymnasium.Env.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> calls will return undefined results.
+<li><p><strong>done</strong> (<em>bool</em>) – (Deprecated) A boolean value for if the episode has ended, in which case further <a class="reference internal" href="#gymnasium.Env.step" title="gymnasium.Env.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> calls will return undefined results.
 A done signal may be emitted for different reasons: Maybe the task underlying the environment was solved successfully,
 a certain timelimit was exceeded, or the physics simulation has entered an invalid state.</p></li>
 </ul>
@@ -473,6 +473,12 @@ original code.</p>
 <p class="admonition-title">Note</p>
 <p>Don’t forget to call <code class="docutils literal notranslate"><span class="pre">super().__init__(env)</span></code> if the subclass overrides <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
 </div>
+<p>Wraps an environment to allow a modular transformation of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> – The environment to wrap</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -504,6 +510,12 @@ observation wrapper like this:</p>
 </div>
 <p>Among others, Gymnasium provides the observation wrapper <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeAwareObservation</span></code>, which adds information about the
 index of the timestep to the observation.</p>
+<p>Wraps an environment to allow a modular transformation of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> – The environment to wrap</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -532,6 +544,12 @@ To do that, we could, for instance, implement the following wrapper:</p>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">reward</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_reward</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_reward</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Wraps an environment to allow a modular transformation of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> – The environment to wrap</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -566,6 +584,12 @@ to use a finite subset of actions. Then, you might want to implement the followi
 </pre></div>
 </div>
 <p>Among others, Gymnasium provides the action wrappers <code class="xref py py-class docutils literal notranslate"><span class="pre">ClipAction</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">RescaleAction</span></code>.</p>
+<p>Wraps an environment to allow a modular transformation of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> – The environment to wrap</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

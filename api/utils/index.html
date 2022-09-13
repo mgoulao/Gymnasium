@@ -168,6 +168,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../core/">Core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spaces/">Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spaces_utils/">Spaces Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wrappers/">Wrappers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vector/">Vector</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Utils</a></li>
@@ -324,10 +325,7 @@
 <dt class="sig sig-object py" id="gymnasium.utils.play.PlayableGame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gymnasium.utils.play.</span></span><span class="sig-name descname"><span class="pre">PlayableGame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys_to_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.play.PlayableGame" title="Permalink to this definition">#</a></dt>
 <dd><p>Wraps an environment allowing keyboard inputs to interact with the environment.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="gymnasium.utils.play.PlayableGame.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys_to_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.play.PlayableGame.__init__" title="Permalink to this definition">#</a></dt>
-<dd><p>Wraps an environment with a dictionary of keyboard buttons to action and if to zoom in on the environment.</p>
+<p>Wraps an environment with a dictionary of keyboard buttons to action and if to zoom in on the environment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -337,8 +335,6 @@
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="gymnasium.utils.play.PlayableGame.process_event">
 <span class="sig-name descname"><span class="pre">process_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.play.PlayableGame.process_event" title="Permalink to this definition">#</a></dt>
@@ -384,10 +380,7 @@ and uses the returned values to update live plots of the metrics.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">play</span><span class="p">(</span><span class="n">your_env</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">plotter</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="gymnasium.utils.play.PlayPlot.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizon_timesteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.play.PlayPlot.__init__" title="Permalink to this definition">#</a></dt>
-<dd><p>Constructor of <a class="reference internal" href="#gymnasium.utils.play.PlayPlot" title="gymnasium.utils.play.PlayPlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlayPlot</span></code></a>.</p>
+<p>Constructor of <a class="reference internal" href="#gymnasium.utils.play.PlayPlot" title="gymnasium.utils.play.PlayPlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlayPlot</span></code></a>.</p>
 <p>The function <code class="docutils literal notranslate"><span class="pre">callback</span></code> that is passed to this constructor should return
 a list of metrics that is of length <code class="docutils literal notranslate"><span class="pre">len(plot_names)</span></code>.</p>
 <dl class="field-list simple">
@@ -402,8 +395,6 @@ a list of metrics that is of length <code class="docutils literal notranslate"><
 <dd class="field-even"><p><strong>DependencyNotInstalled</strong> – If matplotlib is not installed</p>
 </dd>
 </dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="gymnasium.utils.play.PlayPlot.callback">
 <span class="sig-name descname"><span class="pre">callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ObsType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_tp1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ObsType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ActType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rew</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.play.PlayPlot.callback" title="Permalink to this definition">#</a></dt>
@@ -682,6 +673,25 @@ Terminated Truncated (new) step API refers to step() method returning (observati
 <section id="invasive">
 <h3>Invasive<a class="headerlink" href="#invasive" title="Permalink to this heading">#</a></h3>
 <dl class="py function">
+<dt class="sig sig-object py" id="gymnasium.utils.env_checker.check_env">
+<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.env_checker.</span></span><span class="sig-name descname"><span class="pre">check_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_render_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.env_checker.check_env" title="Permalink to this definition">#</a></dt>
+<dd><p>Check that an environment follows Gym API.</p>
+<p>This is an invasive function that calls the environment’s reset and step.</p>
+<p>This is particularly useful when using a custom environment.
+Please take a look at <a class="reference external" href="https://www.gymlibrary.dev/content/environment_creation/">https://www.gymlibrary.dev/content/environment_creation/</a>
+for more information about the API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> – The Gym environment that will be checked</p></li>
+<li><p><strong>warn</strong> – Ignored</p></li>
+<li><p><strong>skip_render_check</strong> – Whether to skip the checks for the render method. True by default (useful for the CI)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="gymnasium.utils.env_checker.data_equivalence">
 <span class="sig-prename descclassname"><span class="pre">gymnasium.utils.env_checker.</span></span><span class="sig-name descname"><span class="pre">data_equivalence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gymnasium.utils.env_checker.data_equivalence" title="Permalink to this definition">#</a></dt>
 <dd><p>Assert equality between data 1 and 2, i.e observations, actions, info.</p>
@@ -776,67 +786,6 @@ Terminated Truncated (new) step API refers to step() method returning (observati
 <dd><p>Check the space limit for only the Box space as a test that only runs as part of <cite>check_env</cite>.</p>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="gymnasium.utils.env_checker.check_env">
-<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.env_checker.</span></span><span class="sig-name descname"><span class="pre">check_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_render_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.env_checker.check_env" title="Permalink to this definition">#</a></dt>
-<dd><p>Check that an environment follows Gym API.</p>
-<p>This is an invasive function that calls the environment’s reset and step.</p>
-<p>This is particularly useful when using a custom environment.
-Please take a look at <a class="reference external" href="https://www.gymlibrary.dev/content/environment_creation/">https://www.gymlibrary.dev/content/environment_creation/</a>
-for more information about the API.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>env</strong> – The Gym environment that will be checked</p></li>
-<li><p><strong>warn</strong> – Ignored</p></li>
-<li><p><strong>skip_render_check</strong> – Whether to skip the checks for the render method. True by default (useful for the CI)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="passive">
-<h3>Passive<a class="headerlink" href="#passive" title="Permalink to this heading">#</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="gymnasium.utils.passive_env_checker.check_space">
-<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.passive_env_checker.</span></span><span class="sig-name descname"><span class="pre">check_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../spaces/#gymnasium.spaces.Space" title="gymnasium.spaces.space.Space"><span class="pre">Space</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">space_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_box_space_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../spaces/#gymnasium.spaces.Box" title="gymnasium.spaces.box.Box"><span class="pre">Box</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.passive_env_checker.check_space" title="Permalink to this definition">#</a></dt>
-<dd><p>A passive check of the environment action space that should not affect the environment.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gymnasium.utils.passive_env_checker.check_obs">
-<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.passive_env_checker.</span></span><span class="sig-name descname"><span class="pre">check_obs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observation_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../spaces/#gymnasium.spaces.Space" title="gymnasium.spaces.space.Space"><span class="pre">Space</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.passive_env_checker.check_obs" title="Permalink to this definition">#</a></dt>
-<dd><p>Check that the observation returned by the environment correspond to the declared one.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>obs</strong> – The observation to check</p></li>
-<li><p><strong>observation_space</strong> – The observation space of the observation</p></li>
-<li><p><strong>method_name</strong> – The method name that generated the observation</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gymnasium.utils.passive_env_checker.env_reset_passive_checker">
-<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.passive_env_checker.</span></span><span class="sig-name descname"><span class="pre">env_reset_passive_checker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.passive_env_checker.env_reset_passive_checker" title="Permalink to this definition">#</a></dt>
-<dd><p>A passive check of the <cite>Env.reset</cite> function investigating the returning reset information and returning the data unchanged.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gymnasium.utils.passive_env_checker.env_step_passive_checker">
-<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.passive_env_checker.</span></span><span class="sig-name descname"><span class="pre">env_step_passive_checker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.passive_env_checker.env_step_passive_checker" title="Permalink to this definition">#</a></dt>
-<dd><p>A passive check for the environment step, investigating the returning data then returning the data unchanged.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gymnasium.utils.passive_env_checker.env_render_passive_checker">
-<span class="sig-prename descclassname"><span class="pre">gymnasium.utils.passive_env_checker.</span></span><span class="sig-name descname"><span class="pre">env_render_passive_checker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gymnasium.utils.passive_env_checker.env_render_passive_checker" title="Permalink to this definition">#</a></dt>
-<dd><p>A passive check of the <cite>Env.render</cite> that the declared render modes/fps in the metadata of the environment is declared.</p>
-</dd></dl>
-
 </section>
 </section>
 </section>
@@ -905,7 +854,6 @@ for more information about the API.</p>
 <li><a class="reference internal" href="#seeding">Seeding</a></li>
 <li><a class="reference internal" href="#environment-checking">Environment Checking</a><ul>
 <li><a class="reference internal" href="#invasive">Invasive</a></li>
-<li><a class="reference internal" href="#passive">Passive</a></li>
 </ul>
 </li>
 </ul>
