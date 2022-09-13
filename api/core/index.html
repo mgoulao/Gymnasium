@@ -346,7 +346,8 @@ This might, for instance, contain: metrics that describe the agent’s performan
 hidden from observations, or individual reward terms that are combined to produce the total reward.
 It also can contain information that distinguishes truncation and termination, however this is deprecated in favour
 of returning two booleans, and will be removed in a future version.</p></li>
-<li><p><strong>done</strong> (<em>bool</em>) – (Deprecated) A boolean value for if the episode has ended, in which case further <a class="reference internal" href="#gymnasium.Env.step" title="gymnasium.Env.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> calls will return undefined results.
+<li><p><strong>done</strong> (<em>bool</em>) – (Deprecated) A boolean value for if the episode has ended, in which case further <a class="reference internal" href="#gymnasium.Env.step" title="gymnasium.Env.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> calls will
+return undefined results.
 A done signal may be emitted for different reasons: Maybe the task underlying the environment was solved successfully,
 a certain timelimit was exceeded, or the physics simulation has entered an invalid state.</p></li>
 </ul>
