@@ -2,15 +2,15 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../../genindex/" /><link rel="search" title="Search" href="../../search/" /><link rel="prev" title="Make your own custom environment" href="../environment_creation/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="../../genindex/" /><link rel="search" title="Search" href="../../search/" /><link rel="next" title="Handling Time Limits" href="../handling_timelimits/" /><link rel="prev" title="Make your own custom environment" href="../environment_creation/" />
         <link rel="canonical" href="https://gymnasium.farama.org/content/vectorising.html" />
 
-    <link rel="shortcut icon" href="../../_static/favicon.png"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15.dev1"/>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.15.dev1"/>
         <title>Vectorising your environments - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=2369d5bf2a113d250c0e61edf00f6b0494869a15" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=67a37f27556a139745d55a547dca47e50878383c" />
     
     
 
@@ -39,25 +39,48 @@
   <body>
 
     <header class="farama-header">
-      <div class="farama-header__left">
-        <a href="https://farama.org/">
-          <img class="farama-header__logo" src="../../_static/img/farama_solid_white.svg">
-          <h1 class="farama-header__title">The Farama Foundation</h1>
-        </a>
-      </div>
-      <div class="farama-header__right">
-        <ul class="farama-header__nav">
-          <li>
-            <a href="https://gymnasium.farama.org">Gymnasium</a>
-          </li>
-          <li>
-            <a href="https://pettingzoo.farama.org">PettingZoo</a>
-          </li>
-          <li>
-            <div class="farama-header__dropdown-container">
-              More
-              <div class="farama-header__dropdown-menu">
+      <div class="farama-header__container">
+        <div class="farama-header__left">
+          <a href="https://farama.org/">
+              <img class="farama-header__logo only-light" src="../../_static/img/gymnasium_black.svg" alt="Light Logo"/>
+              <img class="farama-header__logo only-dark" src="../../_static/img/gymnasium_white.svg" alt="Dark Logo"/>
+            <h1 class="farama-header__title">Gymnasium Documentation</h1>
+          </a>
+        </div>
+        <div class="farama-header__right">
+          <div class="farama-header-menu">
+            <div class="farama-header-menu__btn">
+              <span class="farama-header-menu__btn-name">
+                The Farama Foundation
+              </span>
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+                  <defs></defs>
+                  <path d="M 3 4.677 C 3 3.751 3.659 3 4.474 3 L 27.526 3 C 28.341 3 29 3.751 29 4.677 C 29 5.603 28.341 6.354 27.526 6.354 L 4.474 6.354 C 3.659 6.354 3 5.603 3 4.677 Z" bx:origin="0.622825 3.875593"></path>
+                  <path d="M 3 16 C 3 15.074 3.659 14.323 4.474 14.323 L 27.526 14.323 C 28.341 14.323 29 15.074 29 16 C 29 16.926 28.341 17.677 27.526 17.677 L 4.474 17.677 C 3.659 17.677 3 16.926 3 16 Z" bx:origin="0.622825 0.5"></path>
+                  <path d="M 3 27.323 C 3 26.397 3.659 25.646 4.474 25.646 L 27.526 25.646 C 28.341 25.646 29 26.397 29 27.323 C 29 28.249 28.341 29 27.526 29 L 4.474 29 C 3.659 29 3 28.249 3 27.323 Z" bx:origin="0.622825 -2.875591"></path>
+              </svg>
+            </div>
+            <div class="farama-header-menu__list">
+              <div class="farama-header-menu-list__header">
+                <img class="farama-header-menu__logo" src="../../_static/img/farama_solid_white.svg">
+                <span>The Farama Foundation</span>
+                <button id="farama-close-menu">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-close">
+                    <line x1="3" y1="21" x2="21" y2="3"></line>
+                    <line x1="3" y1="3" x2="21" y2="21"></line>
+                  </svg>
+                </button>
+              </div>
+              <div class="farama-header-menu-list__body">
+                <span class="farama-header-menu__section-title">Projects</span>
                 <ul>
+                  <li>
+                    <a href="https://gymnasium.farama.org">Gymnasium</a>
+                  </li>
+                  <li>
+                    <a href="https://pettingzoo.farama.org">PettingZoo</a>
+                  </li>
                   <li>
                     <a href="https://github.com/Farama-Foundation/SuperSuit">SuperSuit</a>
                   </li>
@@ -79,50 +102,7 @@
                   </li>
                 </ul>
               </div>
-          </div>
-          </li>
-        </ul>
-        <div class="farama-header-menu">
-          <span class="farama-header-menu__btn">Projects</span>
-          <div class="farama-header-menu__list">
-            <div class="farama-header-menu-list__header">
-              <span>Projects</span>
-                <button id="farama-close-menu">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-close">
-                    <line x1="3" y1="21" x2="21" y2="3"></line>
-                    <line x1="3" y1="3" x2="21" y2="21"></line>
-                  </svg>
-                </button>
-              </label>
             </div>
-            <ul>
-              <li>
-                <a href="https://gymnasium.farama.org">Gymnasium</a>
-              </li>
-              <li>
-                <a href="https://pettingzoo.farama.org">PettingZoo</a>
-              </li>
-              <li>
-                <a href="https://github.com/Farama-Foundation/SuperSuit">SuperSuit</a>
-              </li>
-              <li>
-                <a href="https://github.com/Farama-Foundation/tinyscaler">Tinyscaler</a>
-              </li>
-              <li>
-                <a href="https://github.com/Farama-Foundation/gym-robotics">Gymnasium-Robotics
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/Farama-Foundation/AutoROM">AutoROM</a>
-              </li>
-              <li>
-                <a href="https://github.com/Farama-Foundation/MiniGrid">MiniGrid</a>
-              </li>
-              <li>
-                <a href="https://github.com/Farama-Foundation/Jumpy">JumPy</a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -237,16 +217,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo only-light" src="../../_static/img/gymnasium_black.svg" alt="Light Logo"/>
-    <img class="sidebar-logo only-dark" src="../../_static/img/gymnasium_white.svg" alt="Dark Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">Gymnasium Documentation</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../../search/" role="search">
+      <div class="sidebar-sticky"><form class="sidebar-search-container" method="get" action="../../search/" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -335,17 +306,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../environments/atari/zaxxon/">Zaxxon</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../environments/mujoco/">MuJoCo</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/ant/">Ant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/half_cheetah/">Half Cheetah</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/hopper/">Hopper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/humanoid_standup/">Humanoid Standup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/humanoid/">Humanoid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/inverted_double_pendulum/">Inverted Double Pendulum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/inverted_pendulum/">Inverted Pendulum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/reacher/">Reacher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/swimmer/">Swimmer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../environments/mujoco/walker2d/">Walker2D</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../environments/mujoco/">MuJoCo</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../environments/toy_text/">Toy Text</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -375,6 +336,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../environment_creation/">Make your own custom environment</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Vectorising your environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handling_timelimits/">Handling Time Limits</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -437,10 +399,11 @@
 </ul>
 <p>Similar to <code class="docutils literal notranslate"><span class="pre">gymnasium.make</span></code>, you can run a vectorized version of a registered environment using the <code class="docutils literal notranslate"><span class="pre">gymnasium.vector.make</span></code> function. This runs multiple copies of the same environment (in parallel, by default).</p>
 <p>The following example runs 3 copies of the <code class="docutils literal notranslate"><span class="pre">CartPole-v1</span></code> environment in parallel, taking as input a vector of 3 binary actions (one for each copy of the environment), and returning an array of 3 observations stacked along the first dimension, with an array of rewards returned by each copy, and an array of booleans indicating if the episode in each parallel environment has ended.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span>
 <span class="go">array([[ 0.00122802,  0.16228443,  0.02521779, -0.23700266],</span>
@@ -449,7 +412,9 @@
 <span class="go">        dtype=float32)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rewards</span>
 <span class="go">array([1., 1., 1.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dones</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span>
+<span class="go">array([False, False, False])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">truncation</span>
 <span class="go">array([False, False, False])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">infos</span>
 <span class="go">{}</span>
@@ -464,35 +429,35 @@
 <section id="creating-a-vectorized-environment">
 <h3>Creating a vectorized environment<a class="headerlink" href="#creating-a-vectorized-environment" title="Permalink to this heading">#</a></h3>
 <p>To create a vectorized environment that runs multiple environment copies, you can wrap your parallel environments inside <code class="docutils literal notranslate"><span class="pre">gymnasium.vector.SyncVectorEnv</span></code> (for sequential execution), or <code class="docutils literal notranslate"><span class="pre">gymnasium.vector.AsyncVectorEnv</span></code> (for parallel execution, with <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing</a>). These vectorized environments take as input a list of callables specifying how the copies are created.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">)</span>
 <span class="gp">... </span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Alternatively, to create a vectorized environment of multiple copies of the same registered environment, you can use the function <code class="docutils literal notranslate"><span class="pre">gymnasium.vector.make()</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Equivalent</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Equivalent</span>
 </pre></div>
 </div>
 <p>To enable automatic batching of actions and observations, all of the environment copies must share the same <code class="docutils literal notranslate"><span class="pre">action_space</span></code> and <code class="docutils literal notranslate"><span class="pre">observation_space</span></code>. However, all of the parallel environments are not required to be exact copies of one another. For example, you can run 2 instances of <code class="docutils literal notranslate"><span class="pre">Pendulum-v0</span></code> with different values for gravity in a vectorized environment with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Pendulum-v0&quot;</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Pendulum-v0&quot;</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.62</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Pendulum-v0&quot;</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Pendulum-v0&quot;</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.62</span><span class="p">)</span>
 <span class="gp">... </span><span class="p">])</span>
 </pre></div>
 </div>
 <p>See the <code class="docutils literal notranslate"><span class="pre">Observation</span> <span class="pre">&amp;</span> <span class="pre">Action</span> <span class="pre">spaces</span></code> section for more information about automatic batching.</p>
 <p>When using <code class="docutils literal notranslate"><span class="pre">AsyncVectorEnv</span></code> with either the <code class="docutils literal notranslate"><span class="pre">spawn</span></code> or <code class="docutils literal notranslate"><span class="pre">forkserver</span></code> start methods, you must wrap your code containing the vectorized environment with <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code>. See <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#the-spawn-and-forkserver-start-methods">this documentation</a> for more information.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;spawn&quot;</span><span class="p">)</span>
+    <span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;spawn&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="working-with-vectorized-environments">
 <h3>Working with vectorized environments<a class="headerlink" href="#working-with-vectorized-environments" title="Permalink to this heading">#</a></h3>
 <p>While standard Gymnasium environments take a single action and return a single observation (with a reward, and boolean indicating termination), vectorized environments take a <em>batch of actions</em> as input, and return a <em>batch of observations</em>, together with an array of rewards and booleans indicating if the episode ended in each environment copy.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="go">(array([[-0.02792548, -0.04423395,  0.00026012,  0.04486719],</span>
 <span class="go">       [-0.04906582,  0.02779809,  0.02881928, -0.04467649],</span>
@@ -500,7 +465,7 @@
 <span class="go">      dtype=float32), {})</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span>
 <span class="go">array([[ 0.00187507,  0.18986781, -0.03168437, -0.301252  ],</span>
@@ -509,22 +474,24 @@
 <span class="go">      dtype=float32)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rewards</span>
 <span class="go">array([1., 1., 1.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dones</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span>
+<span class="go">array([False, False, False])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">truncation</span>
 <span class="go">array([False, False, False])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">infos</span>
 <span class="go">{}</span>
 </pre></div>
 </div>
 <p>Vectorized environments are compatible with any environment, regardless of the action and observation spaces (e.g. container spaces like <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Dict</span></code>, or any arbitrarily nested spaces). In particular, vectorized environments can automatically batch the observations returned by <code class="docutils literal notranslate"><span class="pre">VectorEnv.reset</span></code> and <code class="docutils literal notranslate"><span class="pre">VectorEnv.step</span></code> for any standard Gymnasium <code class="docutils literal notranslate"><span class="pre">Space</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Box</span></code>, <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Discrete</span></code>, <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Dict</span></code>, or any nested structure thereof). Similarly, vectorized environments can take batches of actions from any standard Gymnasium <code class="docutils literal notranslate"><span class="pre">Space</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">DictEnv</span><span class="p">(</span><span class="n">gymnasium</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="n">observation_space</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span>
-<span class="gp">... </span>        <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
-<span class="gp">... </span>        <span class="s2">&quot;velocity&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">DictEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">observation_space</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span>
+<span class="gp">... </span>        <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="s2">&quot;velocity&quot;</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="p">})</span>
-<span class="gp">... </span>    <span class="n">action_space</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span>
-<span class="gp">... </span>        <span class="s2">&quot;fire&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-<span class="gp">... </span>        <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-<span class="gp">... </span>        <span class="s2">&quot;acceleration&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">action_space</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span>
+<span class="gp">... </span>        <span class="s2">&quot;fire&quot;</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="s2">&quot;acceleration&quot;</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="p">})</span>
 <span class="gp">...</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -532,9 +499,9 @@
 <span class="gp">...</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
-<span class="gp">... </span>        <span class="k">return</span> <span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{})</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{}</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">DictEnv</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">DictEnv</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">observation_space</span>
 <span class="go">Dict(position:Box(-1.0, 1.0, (3, 3), float32), velocity:Box(-1.0, 1.0, (3, 2), float32))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">action_space</span>
@@ -546,7 +513,7 @@
 <span class="gp">... </span>    <span class="s2">&quot;jump&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
 <span class="gp">... </span>    <span class="s2">&quot;acceleration&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="gp">... </span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span>
 <span class="go">{&quot;position&quot;: array([[-0.5337036 ,  0.7439302 ,  0.41748118],</span>
 <span class="go">                    [ 0.9373266 , -0.5780453 ,  0.8987405 ],</span>
@@ -556,38 +523,37 @@
 <span class="go">                   [ 0.26341468,  0.72282314]], dtype=float32)}</span>
 </pre></div>
 </div>
-<p>The environment copies inside a vectorized environment automatically call <code class="docutils literal notranslate"><span class="pre">gymnasium.Env.reset</span></code> at the end of an episode. In the following example, the episode of the 3rd copy ends after 2 steps (the agent fell in a hole), and the paralle environment gets reset (observation <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">is_slippery</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<p>The environment copies inside a vectorized environment automatically call <code class="docutils literal notranslate"><span class="pre">gymnasium.Env.reset</span></code> at the end of an episode. In the following example, the episode of the 3rd copy ends after 2 steps (the agent fell in a hole), and the parallel environment gets reset (observation <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">is_slippery</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="go">(array([0, 0, 0]), {&#39;prob&#39;: array([1, 1, 1]), &#39;_prob&#39;: array([ True,  True,  True])})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dones</span>
-<span class="go">array([False, False,  True])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span>
 <span class="go">array([8, 2, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span>
+<span class="go">array([False, False,  True])</span>
 </pre></div>
 </div>
 <p>Vectorized environments will return <code class="docutils literal notranslate"><span class="pre">infos</span></code> in the form of a dictionary where each value is an array of length <code class="docutils literal notranslate"><span class="pre">num_envs</span></code> and the <em>i-th</em> value of the array represents the info of the <em>i-th</em> environment.<br />
 Each <code class="docutils literal notranslate"><span class="pre">key</span></code> of the info is paired with a boolean mask <code class="docutils literal notranslate"><span class="pre">_key</span></code> representing whether or not the <em>i-th</em> environment has data.<br />
 If the <em>dtype</em> of the returned info is whether <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code> or any <em>dtype</em> inherited from <code class="docutils literal notranslate"><span class="pre">np.number</span></code>, an array of the same <em>dtype</em> will be returned. Otherwise, the array will have <em>dtype</em> <code class="docutils literal notranslate"><span class="pre">object</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">dones</span><span class="p">):</span>
-<span class="gp">... </span>   <span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">)):</span>
+<span class="gp">... </span>   <span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dones</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">termination</span>
 <span class="go">[False, True, False]</span>
 <span class="go">    </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">infos</span><span class="p">)</span>
-<span class="go">{&#39;terminal_observation&#39;: array([None,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">infos</span>
+<span class="go">{&#39;final_observation&#39;: array([None,</span>
 <span class="go">       array([-0.11350546, -1.8090094 ,  0.23710881,  2.8017728 ], dtype=float32),</span>
-<span class="go">       None], dtype=object), &#39;_terminal_observation&#39;: array([False,  True, False])}</span>
+<span class="go">       None], dtype=object), &#39;_final_observation&#39;: array([False,  True, False])}</span>
 </pre></div>
 </div>
 </section>
@@ -595,7 +561,7 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <section id="observation-action-spaces">
 <h2>Observation &amp; Action spaces<a class="headerlink" href="#observation-action-spaces" title="Permalink to this heading">#</a></h2>
 <p>Like any Gymnasium environment, vectorized environments contain the two properties <code class="docutils literal notranslate"><span class="pre">VectorEnv.observation_space</span></code> and <code class="docutils literal notranslate"><span class="pre">VectorEnv.action_space</span></code> to specify the observation and action spaces of the environments. Since vectorized environments operate on multiple environment copies, where the actions taken and observations returned by all of the copies are batched together, the observation and action <em>spaces</em> are batched as well so that the input actions are valid elements of <code class="docutils literal notranslate"><span class="pre">VectorEnv.action_space</span></code>, and the observations are valid elements of <code class="docutils literal notranslate"><span class="pre">VectorEnv.observation_space</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">observation_space</span>
 <span class="go">Box([[-4.8 ...]], [[4.8 ...]], (3, 4), float32)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">action_space</span>
@@ -603,16 +569,16 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 </pre></div>
 </div>
 <p>In order to appropriately batch the observations and actions in vectorized environments, the observation and action spaces of all of the copies are required to be identical.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">)</span>
 <span class="gp">... </span><span class="p">])</span>
 <span class="go">RuntimeError: Some environments have an observation space different from `Box([-4.8 ...], [4.8 ...], (4,), float32)`. </span>
 <span class="go">In order to batch observations, the observation spaces from all environments must be equal.</span>
 </pre></div>
 </div>
 <p>However, sometimes it may be handy to have access to the observation and action spaces of a particular copy, and not the batched spaces. You can access those with the properties <code class="docutils literal notranslate"><span class="pre">VectorEnv.single_observation_space</span></code> and <code class="docutils literal notranslate"><span class="pre">VectorEnv.single_action_space</span></code> of the vectorized environment.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">single_observation_space</span>
 <span class="go">Box([-4.8 ...], [4.8 ...], (4,), float32)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">single_action_space</span>
@@ -627,14 +593,14 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <span class="gp">... </span>    <span class="n">logits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">,</span> <span class="n">num_envs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">flatdim</span><span class="p">(</span><span class="n">envs</span><span class="o">.</span><span class="n">single_observation_space</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">envs</span><span class="o">.</span><span class="n">single_action_space</span><span class="o">.</span><span class="n">n</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="n">policy</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">observations</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -643,14 +609,14 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <section id="shared-memory">
 <h3>Shared memory<a class="headerlink" href="#shared-memory" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">AsyncVectorEnv</span></code> runs each environment copy inside an individual process. At each call to <code class="docutils literal notranslate"><span class="pre">AsyncVectorEnv.reset</span></code> or <code class="docutils literal notranslate"><span class="pre">AsyncVectorEnv.step</span></code>, the observations of all of the parallel environments are sent back to the main process. To avoid expensive transfers of data between processes, especially with large observations (e.g. images), <code class="docutils literal notranslate"><span class="pre">AsyncVectorEnv</span></code> uses a shared memory by default (<code class="docutils literal notranslate"><span class="pre">shared_memory=True</span></code>) that processes can write to and read from at minimal cost. This can increase the throughout of the vectorized environment.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env_fns</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;BreakoutNoFrameskip-v4&quot;</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">5</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env_fns</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;BreakoutNoFrameskip-v4&quot;</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">5</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">(</span><span class="n">env_fns</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">(</span><span class="n">env_fns</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">envs</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span>
 <span class="go">2.23 ms ± 136 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">(</span><span class="n">env_fns</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">(</span><span class="n">env_fns</span><span class="p">,</span> <span class="n">shared_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">envs</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span>
 <span class="go">1.36 ms ± 15.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)</span>
@@ -660,9 +626,9 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <section id="exception-handling">
 <h3>Exception handling<a class="headerlink" href="#exception-handling" title="Permalink to this heading">#</a></h3>
 <p>Because sometimes things may not go as planned, the exceptions raised in any given environment copy are re-raised in the vectorized environment, even when the copy run in parallel with <code class="docutils literal notranslate"><span class="pre">AsyncVectorEnv</span></code>. This way, you can choose how to handle these exceptions yourself (with <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">except</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ErrorEnv</span><span class="p">(</span><span class="n">gymnasium</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="n">observation_space</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">action_space</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ErrorEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">observation_space</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">action_space</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="p">{}</span>
@@ -671,11 +637,11 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <span class="gp">... </span>        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 <span class="gp">... </span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;An error occurred.&quot;</span><span class="p">)</span>
 <span class="gp">... </span>        <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
-<span class="gp">... </span>        <span class="k">return</span> <span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{})</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{}</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">ErrorEnv</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 <span class="go">ERROR: Received the following error from Worker-2: ValueError: An error occurred.</span>
 <span class="go">ERROR: Shutting down Worker-2.</span>
 <span class="go">ERROR: Raising the last exception back to the main process.</span>
@@ -690,7 +656,7 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <h3>Custom spaces<a class="headerlink" href="#custom-spaces" title="Permalink to this heading">#</a></h3>
 <p>Vectorized environments will batch actions and observations if they are elements from standard Gymnasium spaces, such as <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Box</span></code>, <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Discrete</span></code>, or <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Dict</span></code>. However, if you create your own environment with a custom action and/or observation space (inheriting from <code class="docutils literal notranslate"><span class="pre">gymnasium.Space</span></code>), the vectorized environment will not attempt to automatically batch the actions/observations, and instead it will return the raw tuple of elements from all parallel environments.</p>
 <p>In the following example, we create a new environment <code class="docutils literal notranslate"><span class="pre">SMILESEnv</span></code>, whose observations are strings representing the <a class="reference external" href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system">SMILES</a> notation of a molecular structure, with a custom observation space <code class="docutils literal notranslate"><span class="pre">SMILES</span></code>. The observations returned by the vectorized environment are contained in a tuple of strings.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SMILES</span><span class="p">(</span><span class="n">gymnasium</span><span class="o">.</span><span class="n">Space</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SMILES</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Space</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="n">symbols</span>
@@ -698,9 +664,9 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <span class="gp">... </span>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">symbols</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SMILESEnv</span><span class="p">(</span><span class="n">gymnasium</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SMILESEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">observation_space</span> <span class="o">=</span> <span class="n">SMILES</span><span class="p">(</span><span class="s2">&quot;][()CO=&quot;</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">action_space</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">action_space</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="s2">&quot;[&quot;</span>
@@ -708,15 +674,15 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
 <span class="gp">...</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
-<span class="gp">... </span>        <span class="n">reward</span> <span class="o">=</span> <span class="n">done</span> <span class="o">=</span> <span class="p">(</span><span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-<span class="gp">... </span>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">reward</span><span class="p">),</span> <span class="n">done</span><span class="p">,</span> <span class="p">{})</span>
+<span class="gp">... </span>        <span class="n">reward</span> <span class="o">=</span> <span class="n">terminated</span> <span class="o">=</span> <span class="p">(</span><span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">reward</span><span class="p">),</span> <span class="n">terminated</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{}</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">vector</span><span class="o">.</span><span class="n">AsyncVectorEnv</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">[</span><span class="k">lambda</span><span class="p">:</span> <span class="n">SMILESEnv</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">shared_memory</span><span class="o">=</span><span class="kc">False</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">envs</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">observations</span>
 <span class="go">(&#39;[(&#39;, &#39;[O&#39;, &#39;[C&#39;)</span>
 </pre></div>
@@ -732,8 +698,26 @@ If the <em>dtype</em> of the returned info is whether <code class="docutils lite
       <footer>
         
         <div class="related-pages">
-          
-            
+          <a class="next-page" href="../handling_timelimits/">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Handling Time Limits</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+            <a class="prev-page" href="../environment_creation/">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Make your own custom environment</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
