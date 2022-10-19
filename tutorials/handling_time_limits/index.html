@@ -8,7 +8,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:description" content="A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)" />
     <meta property="og:url" content="https://gymnasium.farama.org/tutorials/handling_time_limits.html" /><meta property="og:image" content="https://gymnasium.farama.org/_static/img/gymnasium-github.png" /><meta name="twitter:card" content="summary_large_image"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../../genindex/" /><link rel="search" title="Search" href="../../search/" /><link rel="next" title="SyntaxError" href="../vectorising/" /><link rel="prev" title="Make your own custom environment" href="../environment_creation/" />
+<link rel="index" title="Index" href="../../genindex/" /><link rel="search" title="Search" href="../../search/" /><link rel="next" title="Vectorizing your environments" href="../vectorising/" /><link rel="prev" title="Make your own custom environment" href="../environment_creation/" />
         <link rel="canonical" href="https://gymnasium.farama.org/tutorials/handling_time_limits.html" />
 
     <link rel="shortcut icon" href="../../_static/favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.15.dev1"/>
@@ -482,7 +482,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../environment_creation/">Make your own custom environment</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Handling Time Limits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vectorising/">SyntaxError</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vectorising/">Vectorizing your environments</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -553,26 +553,6 @@ not a terminal state since it has a non-zero transition probability of moving to
 Decision Process that defines the RL problem. This is also different from time-limits in finite horizon environments
 as the agent in this case has no idea about this time-limit.</p>
 </section>
-<section id="initialize-variables">
-<h2>Initialize variables<a class="headerlink" href="#initialize-variables" title="Permalink to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rew</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">done</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">vf_next_state</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">terminated</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-<div class="sphx-glr-script-out highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">&quot;/opt/hostedtoolcache/Python/3.9.14/x64/lib/python3.9/site-packages/sphinx_gallery/scrapers.py&quot;</span>, line <span class="m">375</span>, in <span class="n">save_figures</span>
-    <span class="n">rst</span> <span class="o">=</span> <span class="n">scraper</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">block_vars</span><span class="p">,</span> <span class="n">gallery_conf</span><span class="p">)</span>
-  File <span class="nb">&quot;/opt/hostedtoolcache/Python/3.9.14/x64/lib/python3.9/site-packages/sphinx_gallery/scrapers.py&quot;</span>, line <span class="m">113</span>, in <span class="n">matplotlib_scraper</span>
-    <span class="n">matplotlib</span><span class="p">,</span> <span class="n">plt</span> <span class="o">=</span> <span class="n">_import_matplotlib</span><span class="p">()</span>
-  File <span class="nb">&quot;/opt/hostedtoolcache/Python/3.9.14/x64/lib/python3.9/site-packages/sphinx_gallery/scrapers.py&quot;</span>, line <span class="m">39</span>, in <span class="n">_import_matplotlib</span>
-    <span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="gr">ModuleNotFoundError</span>: <span class="n">No module named &#39;matplotlib&#39;</span>
-</pre></div>
-</div>
-</section>
 <section id="importance-in-learning-code">
 <h2>Importance in learning code<a class="headerlink" href="#importance-in-learning-code" title="Permalink to this heading">#</a></h2>
 <p>Bootstrapping (using one or more estimated values of a variable to update estimates of the same variable) is a key
@@ -598,7 +578,7 @@ termination we don’t bootstrap, when it ends due to truncation, we bootstrap.<
 bootstrap or not. However, this is incorrect since it does not differentiate between termination and truncation.</p>
 <p>A simple example of value functions is shown below. This is an illustrative example and not part of any specific algorithm.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># INCORRECT</span>
-<span class="n">vf_target</span> <span class="o">=</span> <span class="n">rew</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">done</span><span class="p">)</span><span class="o">*</span> <span class="n">vf_next_state</span>
+<span class="n">vf_target</span> <span class="o">=</span> <span class="n">rew</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">done</span><span class="p">)</span> <span class="o">*</span> <span class="n">vf_next_state</span>
 </pre></div>
 </div>
 <p>This is incorrect in the case of episode ending due to a truncation, where bootstrapping needs to happen but it doesn’t.</p>
@@ -611,7 +591,7 @@ The correct way to handle terminations and truncations now is,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># terminated = done and &#39;TimeLimit.truncated&#39; not in info</span>
 <span class="c1"># This was needed in previous versions.</span>
 
-<span class="n">vf_target</span> <span class="o">=</span> <span class="n">rew</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">terminated</span><span class="p">)</span><span class="o">*</span><span class="n">vf_next_state</span>
+<span class="n">vf_target</span> <span class="o">=</span> <span class="n">rew</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">terminated</span><span class="p">)</span> <span class="o">*</span> <span class="n">vf_next_state</span>
 </pre></div>
 </div>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download">
@@ -635,7 +615,7 @@ The correct way to handle terminations and truncations now is,</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">SyntaxError</div>
+                <div class="title">Vectorizing your environments</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -690,7 +670,6 @@ The correct way to handle terminations and truncations now is,</p>
 <li><a class="reference internal" href="#">Handling Time Limits</a><ul>
 <li><a class="reference internal" href="#termination">Termination</a></li>
 <li><a class="reference internal" href="#truncation">Truncation</a></li>
-<li><a class="reference internal" href="#initialize-variables">Initialize variables</a></li>
 <li><a class="reference internal" href="#importance-in-learning-code">Importance in learning code</a></li>
 <li><a class="reference internal" href="#solution">Solution</a></li>
 </ul>

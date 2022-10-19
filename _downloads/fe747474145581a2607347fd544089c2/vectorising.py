@@ -35,9 +35,11 @@ Vectorizing your environments
 # parallel environment has ended.
 
 
+import timeit
+
 import gymnasium as gym
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 envs = gym.vector.make("CartPole-v1", num_envs=3)
 envs.reset()
@@ -84,11 +86,13 @@ infos
 # These vectorized environments take as input a list of callables
 # specifying how the copies are created.
 
-envs = gym.vector.AsyncVectorEnv([
-            lambda: gym.make("CartPole-v1"),
-            lambda: gym.make("CartPole-v1"),
-            lambda: gym.make("CartPole-v1")
-        ])
+envs = gym.vector.AsyncVectorEnv(
+    [
+        lambda: gym.make("CartPole-v1"),
+        lambda: gym.make("CartPole-v1"),
+        lambda: gym.make("CartPole-v1"),
+    ]
+)
 
 # %%
 # Alternatively, to create a vectorized environment of multiple copies of
@@ -105,23 +109,24 @@ envs = gym.vector.make("CartPole-v1", num_envs=3)  # Equivalent
 # instances of ``Pendulum-v1`` with different values for gravity in a
 # vectorized environment with:
 
-env = gym.vector.AsyncVectorEnv([
-        lambda: gym.make("Pendulum-v1", g=9.81),
-        lambda: gym.make("Pendulum-v1", g=1.62)
-    ])
+env = gym.vector.AsyncVectorEnv(
+    [lambda: gym.make("Pendulum-v1", g=9.81), lambda: gym.make("Pendulum-v1", g=1.62)]
+)
 
 # %%
 # See the ``Observation & Action spaces`` section for more information
 # about automatic batching.
-
+#
 # When using ``AsyncVectorEnv`` with either the ``spawn`` or
 # ``forkserver`` start methods, you must wrap your code containing the
 # vectorized environment with ``if __name__ == "__main__":``. See `this
 # documentation <https://docs.python.org/3/library/multiprocessing.html#the-spawn-and-forkserver-start-methods>`__
 # for more information.
-
-if __name__ == "__main__":
-       envs = gym.vector.make("CartPole-v1", num_envs=3, context="spawn")
+#
+# .. code:: python
+#
+#     if __name__ == "__main__":
+#         envs = gym.vector.make("CartPole-v1", num_envs=3, context="spawn")
 
 # %%
 # Working with vectorized environments
@@ -168,23 +173,29 @@ infos
 # structure thereof). Similarly, vectorized environments can take batches
 # of actions from any standard Gymnasium ``Space``.
 
+
 class DictEnv(gym.Env):
-    observation_space = gym.spaces.Dict({
-        "position": gym.spaces.Box(-1., 1., (3,), np.float32),
-        "velocity": gym.spaces.Box(-1., 1., (2,), np.float32)
-    })
-    action_space = gym.spaces.Dict({
-        "fire": gym.spaces.Discrete(2),
-        "jump": gym.spaces.Discrete(2),
-        "acceleration": gym.spaces.Box(-1., 1., (2,), np.float32)
-    })
+    observation_space = gym.spaces.Dict(
+        {
+            "position": gym.spaces.Box(-1.0, 1.0, (3,), np.float32),
+            "velocity": gym.spaces.Box(-1.0, 1.0, (2,), np.float32),
+        }
+    )
+    action_space = gym.spaces.Dict(
+        {
+            "fire": gym.spaces.Discrete(2),
+            "jump": gym.spaces.Discrete(2),
+            "acceleration": gym.spaces.Box(-1.0, 1.0, (2,), np.float32),
+        }
+    )
 
     def reset(self):
         return self.observation_space.sample()
 
     def step(self, action):
         observation = self.observation_space.sample()
-        return observation, 0., False, False, {}
+        return observation, 0.0, False, False, {}
+
 
 # %%
 envs = gym.vector.AsyncVectorEnv([lambda: DictEnv()] * 3)
@@ -198,7 +209,7 @@ envs.reset()
 actions = {
     "fire": np.array([1, 1, 0]),
     "jump": np.array([0, 1, 0]),
-    "acceleration": np.random.uniform(-1., 1., size=(3, 2))
+    "acceleration": np.random.uniform(-1.0, 1.0, size=(3, 2)),
 }
 observations, rewards, termination, truncation, infos = envs.step(actions)
 observations
@@ -273,10 +284,9 @@ envs.action_space
 # vectorized environments, the observation and action spaces of all of the
 # copies are required to be identical.
 
-envs = gym.vector.AsyncVectorEnv([
-    lambda: gym.make("CartPole-v1"),
-    lambda: gym.make("MountainCar-v0")
-])
+envs = gym.vector.AsyncVectorEnv(
+    [lambda: gym.make("CartPole-v1"), lambda: gym.make("MountainCar-v0")]
+)
 
 # %%
 # However, sometimes it may be handy to have access to the observation and
@@ -301,15 +311,16 @@ envs.single_action_space
 from gymnasium.spaces.utils import flatdim
 from scipy.special import softmax
 
+
 def policy(weights, observations):
     logits = np.dot(observations, weights)
     return softmax(logits, axis=1)
 
+
 envs = gym.vector.make("CartPole-v1", num_envs=3)
 
 weights = np.random.randn(
-    flatdim(envs.single_observation_space),
-    envs.single_action_space.n
+    flatdim(envs.single_observation_space), envs.single_action_space.n
 )
 
 observations, infos = envs.reset()
@@ -336,12 +347,12 @@ observations, rewards, termination, truncation, infos = envs.step(actions)
 env_fns = [lambda: gym.make("BreakoutNoFrameskip-v4")] * 5
 envs = gym.vector.AsyncVectorEnv(env_fns, shared_memory=False)
 envs.reset()
-%timeit envs.step(envs.action_space.sample())
+timeit("envs.step(envs.action_space.sample()", number=1000)
 
 # %%
 envs = gym.vector.AsyncVectorEnv(env_fns, shared_memory=True)
 envs.reset()
-%timeit envs.step(envs.action_space.sample())
+timeit("envs.step(envs.action_space.sample())", number=1000)
 
 # %%
 # Exception handling
@@ -353,8 +364,9 @@ envs.reset()
 # you can choose how to handle these exceptions yourself (with
 # ``try  except``).
 
+
 class ErrorEnv(gym.Env):
-    observation_space = gym.spaces.Box(-1., 1., (2,), np.float32)
+    observation_space = gym.spaces.Box(-1.0, 1.0, (2,), np.float32)
     action_space = gym.spaces.Discrete(2)
 
     def reset(self):
@@ -364,7 +376,8 @@ class ErrorEnv(gym.Env):
         if action == 1:
             raise ValueError("An error occurred.")
         observation = self.observation_space.sample()
-        return observation, 0., False, False, {}
+        return observation, 0.0, False, False, {}
+
 
 envs = gym.vector.AsyncVectorEnv([lambda: ErrorEnv()] * 3)
 observations, infos = envs.reset()
@@ -400,6 +413,7 @@ class SMILES(gym.Space):
     def __eq__(self, other):
         return self.symbols == other.symbols
 
+
 class SMILESEnv(gym.Env):
     observation_space = SMILES("][()CO=")
     action_space = gym.spaces.Discrete(7)
@@ -410,13 +424,11 @@ class SMILESEnv(gym.Env):
 
     def step(self, action):
         self._state += self.observation_space.symbols[action]
-        reward = terminated = (action == 0)
+        reward = terminated = action == 0
         return self._state, float(reward), terminated, False, {}
 
-envs = gym.vector.AsyncVectorEnv(
-    [lambda: SMILESEnv()] * 3,
-    shared_memory=False
-)
+
+envs = gym.vector.AsyncVectorEnv([lambda: SMILESEnv()] * 3, shared_memory=False)
 envs.reset()
 observations, rewards, termination, truncation, infos = envs.step(np.array([2, 5, 4]))
 observations
