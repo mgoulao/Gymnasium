@@ -106,6 +106,14 @@
                         MiniGrid
                       </a>
                     </li>
+                    <li>
+                      <a href="https://robotics.farama.org">
+                        
+                        <img src="../_static/img/gymrobotics-white.svg">
+                        
+                        Gymnasium-Robotics
+                      </a>
+                    </li>
                     
                   </ul>
                 </div>
@@ -118,14 +126,6 @@
                         <img src="../_static/img/supersuit-white.svg">
                         
                         SuperSuit
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://github.com/Farama-Foundation/gym-robotics">
-                        
-                        <img src="../_static/img/gymrobotics-white.svg">
-                        
-                        Gymnasium-Robotics
                       </a>
                     </li>
                     <li>
@@ -482,12 +482,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/environment_creation/">Make your own custom environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/handling_time_limits/">Handling Time Limits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/vectorising/">Vectorizing your environments</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium">Github</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://farama.org/donations">Donate</a></li>
 </ul>
 
 </div>
@@ -581,6 +579,12 @@
 </pre></div>
 </div>
 </section>
+<section id="writing-tutorials">
+<h2>Writing Tutorials<a class="headerlink" href="#writing-tutorials" title="Permalink to this heading">#</a></h2>
+<p>We use Sphinx-Gallery to build the tutorials inside the <code class="docutils literal notranslate"><span class="pre">docs/tutorials</span></code> directory. Check <code class="docutils literal notranslate"><span class="pre">docs/tutorials/demo.py</span></code> to see an example of a tutorial and <a class="reference external" href="https://sphinx-gallery.github.io/stable/syntax.html">Sphinx-Gallery documentation</a> for more information.</p>
+<p>To convert Jupyer Notebooks to the python tutorials you can use <a class="reference external" href="https://gist.github.com/mgoulao/f07f5f79f6cd9a721db8a34bba0a19a7">this script</a>.</p>
+<p>If you want Sphinx-Gallery to execute the tutorial (which adds outputs and plots) then the file name should start with <code class="docutils literal notranslate"><span class="pre">run_</span></code>. Note that this adds to the build time so make sure the script doesn’t take more than a few seconds to execute.</p>
+</section>
 </section>
 
         </article>
@@ -604,11 +608,7 @@
           </div>
           <div class="right-details">
             <div class="icons">
-              <a class="muted-link" href="https://github.com/Farama-Foundation/Gymnasium" aria-label="On GitHub">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
-              </a>
+              
             </div>
           </div>
         </div>
@@ -639,6 +639,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#build-the-documentation">Build the Documentation</a></li>
+<li><a class="reference internal" href="#writing-tutorials">Writing Tutorials</a></li>
 </ul>
 </li>
 </ul>
@@ -714,5 +715,6 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    
     </body>
 </html>
