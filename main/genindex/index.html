@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="../_static/favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.15.dev1"/><title>Index - Gymnasium Documentation</title>
 <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3cf7b839e8c50b5f3a39bb99d90baa7b845de926" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=91b9f2a71a58ed2481980f1e5725e16457fde93d" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=24b18ece81cb9ff18679a2945b9c89ba44829d18" />
     
     
 
@@ -251,7 +251,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api/experimental/">Experimental</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api/experimental/functional/">Functional Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/experimental/wrappers/">Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/experimental/wrappers/#reward-wrappers">Reward Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/experimental/vector/">Vectorizing Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/experimental/vector_wrappers/">Vector Environment Wrappers</a></li>
 </ul>
@@ -367,10 +366,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/handling_time_limits/">Handling Time Limits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/reinforce_invpend_gym_v26/">Training using REINFORCE for Mujoco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/vector_envs_tutorial/">Training A2C with Vector Envs and Domain Randomization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium">Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../content/release_notes/">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium/blob/main/docs/README.md">Contribute to the Docs</a></li>
 </ul>
 
@@ -425,13 +426,17 @@
           <li><a href="../api/wrappers/#gymnasium.Wrapper.action_space">(gymnasium.Wrapper property)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/wrappers/action_wrappers/#gymnasium.ActionWrapper">ActionWrapper (class in gymnasium)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/vector/#gymnasium.vector.AsyncVectorEnv">AsyncVectorEnv (class in gymnasium.vector)</a>
 </li>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.AtariPreprocessing">AtariPreprocessing (class in gymnasium.wrappers)</a>
+</li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.AtariPreprocessingV0">AtariPreprocessingV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.AutoresetV0">AutoresetV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.AutoResetWrapper">AutoResetWrapper (class in gymnasium.wrappers)</a>
 </li>
@@ -553,6 +558,8 @@
 </li>
         <li><a href="../api/wrappers/observation_wrappers/#gymnasium.wrappers.FrameStack">FrameStack (class in gymnasium.wrappers)</a>
 </li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.FrameStackObservationV0">FrameStackObservationV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
         <li><a href="../api/spaces/#gymnasium.spaces.space.Space.from_jsonable">from_jsonable() (in module gymnasium.spaces.space.Space)</a>
 </li>
         <li><a href="../api/experimental/functional/#gymnasium.experimental.FuncEnv">FuncEnv (class in gymnasium.experimental)</a>
@@ -596,6 +603,10 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.HumanRendering">HumanRendering (class in gymnasium.wrappers)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.HumanRenderingV0">HumanRenderingV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -690,7 +701,11 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/wrappers/observation_wrappers/#gymnasium.wrappers.NormalizeObservation">NormalizeObservation (class in gymnasium.wrappers)</a>
 </li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.NormalizeObservationV0">NormalizeObservationV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
         <li><a href="../api/wrappers/reward_wrappers/#gymnasium.wrappers.NormalizeReward">NormalizeReward (class in gymnasium.wrappers)</a>
+</li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.NormalizeRewardV0">NormalizeRewardV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
@@ -701,6 +716,8 @@
 </li>
         </ul></li>
         <li><a href="../api/utils/#gymnasium.utils.seeding.np_random">np_random() (in module gymnasium.utils.seeding)</a>
+</li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.NumpyToTorchV0">NumpyToTorchV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -730,6 +747,8 @@
 </li>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.OrderEnforcing">OrderEnforcing (class in gymnasium.wrappers)</a>
 </li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.OrderEnforcingV0">OrderEnforcingV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -740,12 +759,16 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.PassiveEnvChecker">PassiveEnvChecker (class in gymnasium.wrappers)</a>
 </li>
-        <li><a href="../api/wrappers/observation_wrappers/#gymnasium.wrappers.PixelObservationWrapper">PixelObservationWrapper (class in gymnasium.wrappers)</a>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.PassiveEnvCheckerV0">PassiveEnvCheckerV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
-        <li><a href="../api/utils/#gymnasium.utils.play.play">play() (in module gymnasium.utils.play)</a>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.PixelObservationV0">PixelObservationV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
+        <li><a href="../api/wrappers/observation_wrappers/#gymnasium.wrappers.PixelObservationWrapper">PixelObservationWrapper (class in gymnasium.wrappers)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="../api/utils/#gymnasium.utils.play.play">play() (in module gymnasium.utils.play)</a>
+</li>
         <li><a href="../api/utils/#gymnasium.utils.play.PlayableGame">PlayableGame (class in gymnasium.utils.play)</a>
 </li>
         <li><a href="../api/utils/#gymnasium.utils.play.PlayPlot">PlayPlot (class in gymnasium.utils.play)</a>
@@ -766,7 +789,11 @@
 </li>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.RecordEpisodeStatistics">RecordEpisodeStatistics (class in gymnasium.wrappers)</a>
 </li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.RecordEpisodeStatisticsV0">RecordEpisodeStatisticsV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.RecordVideo">RecordVideo (class in gymnasium.wrappers)</a>
+</li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.RecordVideoV0">RecordVideoV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
         <li><a href="../api/registry/#gymnasium.register">register() (in module gymnasium)</a>
 </li>
@@ -782,12 +809,14 @@
 </li>
         <li><a href="../api/wrappers/misc_wrappers/#gymnasium.wrappers.RenderCollection">RenderCollection (class in gymnasium.wrappers)</a>
 </li>
+        <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.RenderCollectionV0">RenderCollectionV0 (class in gymnasium.experimental.wrappers)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/wrappers/action_wrappers/#gymnasium.wrappers.RescaleAction">RescaleAction (class in gymnasium.wrappers)</a>
 </li>
         <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.RescaleActionV0">RescaleActionV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="../api/experimental/wrappers/#gymnasium.experimental.wrappers.RescaleObservationV0">RescaleObservationV0 (class in gymnasium.experimental.wrappers)</a>
 </li>
         <li><a href="../api/vector/#gymnasium.vector.VectorEnv.reset">reset() (gymnasium.vector.VectorEnv method)</a>

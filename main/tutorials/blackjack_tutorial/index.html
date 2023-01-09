@@ -15,7 +15,7 @@
         <title>Solving Blackjack with Q-Learning - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3cf7b839e8c50b5f3a39bb99d90baa7b845de926" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=91b9f2a71a58ed2481980f1e5725e16457fde93d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=24b18ece81cb9ff18679a2945b9c89ba44829d18" />
     
     
 
@@ -253,7 +253,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../api/experimental/">Experimental</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/functional/">Functional Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/wrappers/">Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api/experimental/wrappers/#reward-wrappers">Reward Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/vector/">Vectorizing Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/vector_wrappers/">Vector Environment Wrappers</a></li>
 </ul>
@@ -369,10 +368,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../handling_time_limits/">Handling Time Limits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reinforce_invpend_gym_v26/">Training using REINFORCE for Mujoco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vector_envs_tutorial/">Training A2C with Vector Envs and Domain Randomization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium">Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/release_notes/">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium/blob/main/docs/README.md">Contribute to the Docs</a></li>
 </ul>
 
@@ -563,7 +564,7 @@ valued as the best) <code class="docutils literal notranslate"><span class="pre"
         <span class="n">final_epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">discount_factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize a Reinforcement Learning agent with an empty dictionary</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a Reinforcement Learning agent with an empty dictionary</span>
 <span class="sd">        of state-action values (q_values), a learning rate and an epsilon.</span>
 
 <span class="sd">        Args:</span>
@@ -585,7 +586,7 @@ valued as the best) <code class="docutils literal notranslate"><span class="pre"
         <span class="bp">self</span><span class="o">.</span><span class="n">training_error</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the best action with probability (1 - epsilon)</span>
 <span class="sd">        otherwise a random action with probability epsilon to ensure exploration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -605,7 +606,7 @@ valued as the best) <code class="docutils literal notranslate"><span class="pre"
         <span class="n">terminated</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
         <span class="n">next_obs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Updates the Q-value of an action.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the Q-value of an action.&quot;&quot;&quot;</span>
         <span class="n">future_q_value</span> <span class="o">=</span> <span class="p">(</span><span class="ow">not</span> <span class="n">terminated</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q_values</span><span class="p">[</span><span class="n">next_obs</span><span class="p">])</span>
         <span class="n">temporal_difference</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">reward</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">*</span> <span class="n">future_q_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_values</span><span class="p">[</span><span class="n">obs</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
@@ -700,7 +701,7 @@ the n_episodes by 10x and lower the learning_rate (e.g. to 0.001).</p>
 <section id="visualising-the-policy">
 <h2>Visualising the policy<a class="headerlink" href="#visualising-the-policy" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_grids</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">usable_ace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create value and policy grid given an agent.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create value and policy grid given an agent.&quot;&quot;&quot;</span>
     <span class="c1"># convert our state-action values to state values</span>
     <span class="c1"># and build a policy dictionary that maps observations to actions</span>
     <span class="n">state_value</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -733,7 +734,7 @@ the n_episodes by 10x and lower the learning_rate (e.g. to 0.001).</p>
 
 
 <span class="k">def</span> <span class="nf">create_plots</span><span class="p">(</span><span class="n">value_grid</span><span class="p">,</span> <span class="n">policy_grid</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a plot using a value and policy grid.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a plot using a value and policy grid.&quot;&quot;&quot;</span>
     <span class="c1"># create a new figure with 2 subplots (left: state values, right: policy)</span>
     <span class="n">player_count</span><span class="p">,</span> <span class="n">dealer_count</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value_grid</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figaspect</span><span class="p">(</span><span class="mf">0.4</span><span class="p">))</span>

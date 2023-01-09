@@ -15,7 +15,7 @@
         <title>Make your own custom environment - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3cf7b839e8c50b5f3a39bb99d90baa7b845de926" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=91b9f2a71a58ed2481980f1e5725e16457fde93d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=24b18ece81cb9ff18679a2945b9c89ba44829d18" />
     
     
 
@@ -253,7 +253,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../api/experimental/">Experimental</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/functional/">Functional Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/wrappers/">Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api/experimental/wrappers/#reward-wrappers">Reward Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/vector/">Vectorizing Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/experimental/vector_wrappers/">Vector Environment Wrappers</a></li>
 </ul>
@@ -369,10 +368,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../handling_time_limits/">Handling Time Limits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reinforce_invpend_gym_v26/">Training using REINFORCE for Mujoco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vector_envs_tutorial/">Training A2C with Vector Envs and Domain Randomization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium">Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/release_notes/">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium/blob/main/docs/README.md">Contribute to the Docs</a></li>
 </ul>
 
@@ -434,22 +435,22 @@ with the code that is presented here. We recommend that you use a virtual enviro
 <section id="subclassing-gymnasium-env">
 <h2>Subclassing gymnasium.Env<a class="headerlink" href="#subclassing-gymnasium-env" title="Permalink to this heading">#</a></h2>
 <p>Before learning how to create your own environment you should check out
-<a class="reference external" href="/api/core">the documentation of Gymnasium’s API</a>.</p>
+<a class="reference external" href="/api/env">the documentation of Gymnasium’s API</a>.</p>
 <p>We will be concerned with a subset of gym-examples that looks like this:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gym-examples/
-  README.md
-  setup.py
-  gym_examples/
-    __init__.py
-    envs/
-      __init__.py
-      grid_world.py
-    wrappers/
-      __init__.py
-      relative_position.py
-      reacher_weighted_reward.py
-      discrete_action.py
-      clip_reward.py
+<span class="w">  </span>README.md
+<span class="w">  </span>setup.py
+<span class="w">  </span>gym_examples/
+<span class="w">    </span>__init__.py
+<span class="w">    </span>envs/
+<span class="w">      </span>__init__.py
+<span class="w">      </span>grid_world.py
+<span class="w">    </span>wrappers/
+<span class="w">      </span>__init__.py
+<span class="w">      </span>relative_position.py
+<span class="w">      </span>reacher_weighted_reward.py
+<span class="w">      </span>discrete_action.py
+<span class="w">      </span>clip_reward.py
 </pre></div>
 </div>
 <p>To illustrate the process of subclassing <code class="docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>, we will
@@ -521,7 +522,7 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
         <span class="c1"># We have 4 actions, corresponding to &quot;right&quot;, &quot;up&quot;, &quot;left&quot;, &quot;down&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The following dictionary maps abstract actions from `self.action_space` to</span>
 <span class="sd">        the direction we will walk in if that action is taken.</span>
 <span class="sd">        I.e. 0 corresponds to &quot;right&quot;, 1 to &quot;up&quot; etc.</span>
@@ -536,7 +537,7 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
         <span class="k">assert</span> <span class="n">render_mode</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">render_mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;render_modes&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">render_mode</span> <span class="o">=</span> <span class="n">render_mode</span>
 
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If human-rendering is used, `self.window` will be a reference</span>
 <span class="sd">        to the window that we draw to. `self.clock` will be a clock that is used</span>
 <span class="sd">        to ensure that the environment is rendered at the correct framerate in</span>
