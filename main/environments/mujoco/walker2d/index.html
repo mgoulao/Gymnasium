@@ -11,7 +11,7 @@
 <link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Atari" href="../../atari/" /><link rel="prev" title="Pusher" href="../pusher/" />
         <link rel="canonical" href="https://gymnasium.farama.org/environments/mujoco/walker2d.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07.dev1 -->
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 6.2.1 and Furo 2022.12.07.dev1 -->
         <title>Walker2D - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=721f65a87c37740baa8d605b09db5bec3a2987a8" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=b0c92cd440df7c18a0306b0433406327ff2c572f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=4297ed78bc2370ec4493f1a6639f04addebc5da5" />
     
     
 
@@ -505,16 +505,15 @@
 </div>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">#</a></h2>
-<p>This environment builds on the hopper environment based on the work done by Erez, Tassa, and Todorov
-in <a class="reference external" href="http://www.roboticsproceedings.org/rss07/p10.pdf">“Infinite Horizon Model Predictive Control for Nonlinear Periodic Tasks”</a>
-by adding another set of legs making it possible for the robot to walker forward instead of
+<p>This environment builds on the <a class="reference external" href="https://gymnasium.farama.org/environments/mujoco/hopper/">hopper</a> environment
+by adding another set of legs making it possible for the robot to walk forward instead of
 hop. Like other Mujoco environments, this environment aims to increase the number of independent state
 and control variables as compared to the classic control environments. The walker is a
-two-dimensional two-legged figure that consist of four main body parts - a single torso at the top
+two-dimensional two-legged figure that consist of seven main body parts - a single torso at the top
 (with the two legs splitting after the torso), two thighs in the middle below the torso, two legs
 in the bottom below the thighs, and two feet attached to the legs on which the entire body rests.
-The goal is to make coordinate both sets of feet, legs, and thighs to move in the forward (right)
-direction by applying torques on the six hinges connecting the six body parts.</p>
+The goal is to walk in the in the forward (right)
+direction by applying torques on the six hinges connecting the seven body parts.</p>
 </section>
 <section id="action-space">
 <h2>Action Space<a class="headerlink" href="#action-space" title="Permalink to this heading">#</a></h2>
@@ -609,18 +608,18 @@ of the top will be returned in <code class="docutils literal notranslate"><span 
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0</p></td>
-<td><p>z-coordinate of the top (height of hopper)</p></td>
+<td><p>z-coordinate of the torso (height of hopper)</p></td>
 <td><p>-Inf</p></td>
 <td><p>Inf</p></td>
-<td><p>rootz (torso)</p></td>
+<td><p>rootz</p></td>
 <td><p>slide</p></td>
 <td><p>position (m)</p></td>
 </tr>
 <tr class="row-odd"><td><p>1</p></td>
-<td><p>angle of the top</p></td>
+<td><p>angle of the torso</p></td>
 <td><p>-Inf</p></td>
 <td><p>Inf</p></td>
-<td><p>rooty (torso)</p></td>
+<td><p>rooty</p></td>
 <td><p>hinge</p></td>
 <td><p>angle (rad)</p></td>
 </tr>
@@ -673,7 +672,7 @@ of the top will be returned in <code class="docutils literal notranslate"><span 
 <td><p>angle (rad)</p></td>
 </tr>
 <tr class="row-even"><td><p>8</p></td>
-<td><p>velocity of the x-coordinate of the top</p></td>
+<td><p>velocity of the x-coordinate of the torso</p></td>
 <td><p>-Inf</p></td>
 <td><p>Inf</p></td>
 <td><p>rootx</p></td>
@@ -681,7 +680,7 @@ of the top will be returned in <code class="docutils literal notranslate"><span 
 <td><p>velocity (m/s)</p></td>
 </tr>
 <tr class="row-odd"><td><p>9</p></td>
-<td><p>velocity of the z-coordinate (height) of the top</p></td>
+<td><p>velocity of the z-coordinate (height) of the rorso</p></td>
 <td><p>-Inf</p></td>
 <td><p>Inf</p></td>
 <td><p>rootz</p></td>
@@ -757,7 +756,7 @@ of the top will be returned in <code class="docutils literal notranslate"><span 
 <em><code class="docutils literal notranslate"><span class="pre">forward_reward_weight</span></code> * (x-coordinate before action - x-coordinate after action)/dt</em>.
 <em>dt</em> is the time between actions and is dependeent on the frame_skip parameter
 (default is 4), where the frametime is 0.002 - making the default
-<em>dt = 4 * 0.002 = 0.008</em>. This reward would be positive if the walker walks forward (right) desired.</p></li>
+<em>dt = 4 * 0.002 = 0.008</em>. This reward would be positive if the walker walks forward (positive x direction).</p></li>
 <li><p><em>ctrl_cost</em>: A cost for penalising the walker if it
 takes actions that are too large. It is measured as
 <em><code class="docutils literal notranslate"><span class="pre">ctrl_cost_weight</span></code> * sum(action<sup>2</sup>)</em> where <em><code class="docutils literal notranslate"><span class="pre">ctrl_cost_weight</span></code></em> is
@@ -903,7 +902,14 @@ the episode ends when any of the following happens:</p>
             </div>
             <div class="right-details">
               <div class="icons">
-                
+                <a class="muted-link" href="https://github.com/Farama-Foundation/Gymnasium/"
+                  aria-label="On GitHub">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                    </path>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -1003,6 +1009,7 @@ the episode ends when any of the following happens:</p>
     <script src="../../../_static/scripts/furo.js"></script>
     
     <script>
+      // Create menu with Farama projects by using the API at farama.org/api/projects.json
       const createCORSRequest = (method, url) => {
         let xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
@@ -1117,8 +1124,8 @@ the episode ends when any of the following happens:</p>
     
     <script>
       const versioningConfig = {
-        githubUser: '',
-        githubRepo: '',
+        githubUser: 'Farama-Foundation',
+        githubRepo: 'Gymnasium',
       };
       fetch('/main/_static/versioning/versioning_menu.html').then(response => {
         if (response.status === 200) {
