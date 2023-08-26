@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SPHINX_GITHUB_CHANGELOG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TAG_NAME: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v3
 
@@ -52,6 +53,7 @@ jobs:
 
       - name: Upload to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ !contains(env.TAG_NAME, 'a') }}
         with:
           folder: _build
           clean-exclude: |
