@@ -46,12 +46,12 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _build
-          target-folder: ${{GITHUB_REF_NAME}}
+          target-folder: $GITHUB_REF_NAME
           clean: false
 
       - name: Upload to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ !contains(GITHUB_REF_NAME, 'a') }}
+        if: ${{ !contains(env.GITHUB_REF_NAME, 'a') }}
         with:
           folder: _build
           clean-exclude: |
