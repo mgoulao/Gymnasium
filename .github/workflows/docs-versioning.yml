@@ -18,9 +18,6 @@ jobs:
         with:
             python-version: '3.9'
 
-      - name: Echo tag
-        run: echo ${{ env.TAG_NAME }}
-
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
 
@@ -46,12 +43,12 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _build
-          target-folder: $GITHUB_REF_NAME
+          target-folder: ${{github.ref_name}}
           clean: false
 
       - name: Upload to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ !contains(env.GITHUB_REF_NAME, 'a') }}
+        if: ${{ !contains(github.ref_name, 'a') }}
         with:
           folder: _build
           clean-exclude: |
