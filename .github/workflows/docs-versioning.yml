@@ -23,6 +23,12 @@ jobs:
         id: tag
         uses: dawidd6/action-get-tag@v1
 
+      - name: Echo tag
+        run: echo ${{ steps.tag.outputs.tag }}
+
+      - name: Echo tag
+        run: echo ${{ env.TAG_NAME }}
+
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
 
@@ -48,12 +54,12 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _build
-          target-folder: ${{steps.tag.outputs.tag}}
+          target-folder: ${{env.TAG_NAME}}
           clean: false
 
       - name: Upload to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ !contains(env.TAG_NAME, 'a') }}
+        if: ${{ !contains(steps.tag.outputs.tag, 'a') }}
         with:
           folder: _build
           clean-exclude: |
