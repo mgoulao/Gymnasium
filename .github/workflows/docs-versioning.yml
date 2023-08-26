@@ -11,20 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SPHINX_GITHUB_CHANGELOG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      TAG_NAME: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v3
 
       - uses: actions/setup-python@v4
         with:
             python-version: '3.9'
-
-      - name: Get tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-
-      - name: Echo tag
-        run: echo ${{ steps.tag.outputs.tag }}
 
       - name: Echo tag
         run: echo ${{ env.TAG_NAME }}
@@ -54,12 +46,12 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _build
-          target-folder: ${{env.TAG_NAME}}
+          target-folder: ${{GITHUB_REF_NAME}}
           clean: false
 
       - name: Upload to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ !contains(steps.tag.outputs.tag, 'a') }}
+        if: ${{ !contains(GITHUB_REF_NAME, 'a') }}
         with:
           folder: _build
           clean-exclude: |
