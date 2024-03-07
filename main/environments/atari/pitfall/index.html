@@ -232,7 +232,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/fundamental/">Fundamental Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/composite/">Composite Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/utils/">Spaces Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/wrappers/">Wrappers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Wrappers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -241,11 +240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/action_wrappers/">Action Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/observation_wrappers/">Observation Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/reward_wrappers/">Reward Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/vector_wrappers/">Vector wrappers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vector environments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vector environments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Vector Wrappers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vectorize</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vectorize</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/async_vector_env/">AsyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/sync_vector_env/">SyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
@@ -415,6 +413,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/training_agents/FrozenLake_tuto/">Frozenlake benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/third-party-tutorials/">Third-Party Tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.comet.com/docs/v2/integrations/ml-frameworks/gymnasium/?utm_source=gymnasium&amp;utm_medium=partner&amp;utm_campaign=partner_gymnasium_2023&amp;utm_content=docs_gymnasium">Comet Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -479,7 +478,7 @@
           </div>
           <article role="main">
             
-            <section id="pitfall">
+            <section class="tex2jax_ignore mathjax_ignore" id="pitfall">
 <h1>Pitfall<a class="headerlink" href="#pitfall" title="Link to this heading">#</a></h1>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../../../_images/pitfall.gif"><img alt="../../../_images/pitfall.gif" src="../../../_images/pitfall.gif" style="width: 120px;" /></a>
@@ -582,11 +581,10 @@ As Pitfall uses the full set of actions then specifying <code class="docutils li
 <li><p><code class="docutils literal notranslate"><span class="pre">obs_type=&quot;grayscale&quot;</span> <span class="pre">-&gt;</span> <span class="pre">Box(0,</span> <span class="pre">255,</span> <span class="pre">(210,</span> <span class="pre">160),</span> <span class="pre">np.uint8)</span></code>, a grayscale version of the “rgb” type</p></li>
 </ul>
 <p>See variants section for the type of observation used by each environment id by default.</p>
-<section id="rewards">
-<h3>Rewards<a class="headerlink" href="#rewards" title="Link to this heading">#</a></h3>
-<p>You get score points for collecting treasure, you lose points through some misfortunes like falling down a hole.
-For a more detailed documentation, see <a class="reference external" href="https://atariage.com/manual_html_page.php?SoftwareLabelID=360">the AtariAge page</a>.</p>
 </section>
+<section id="rewards">
+<h2>Rewards<a class="headerlink" href="#rewards" title="Link to this heading">#</a></h2>
+<p>You get score points for collecting treasure, you lose points through some misfortunes like falling down a hole. For a more detailed documentation, see the <a class="reference external" href="https://atariage.com/manual_html_page.php?SoftwareLabelID=360">AtariAge page</a>.</p>
 </section>
 <section id="variants">
 <h2>Variants<a class="headerlink" href="#variants" title="Link to this heading">#</a></h2>
@@ -793,10 +791,8 @@ along with the default values.</p>
 <li><a class="reference internal" href="#">Pitfall</a><ul>
 <li><a class="reference internal" href="#description">Description</a></li>
 <li><a class="reference internal" href="#actions">Actions</a></li>
-<li><a class="reference internal" href="#observations">Observations</a><ul>
+<li><a class="reference internal" href="#observations">Observations</a></li>
 <li><a class="reference internal" href="#rewards">Rewards</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#variants">Variants</a></li>
 <li><a class="reference internal" href="#difficulty-and-modes">Difficulty and modes</a></li>
 <li><a class="reference internal" href="#version-history">Version History</a></li>
@@ -886,7 +882,7 @@ along with the default values.</p>
         })()
       </script>
 
-    <script src="../../../_static/documentation_options.js?v=a4d19d35"></script>
+    <script src="../../../_static/documentation_options.js?v=ed34540e"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=7660844c"></script>

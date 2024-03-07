@@ -231,7 +231,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/spaces/fundamental/">Fundamental Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/spaces/composite/">Composite Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/spaces/utils/">Spaces Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../api/vector/utils/">Utility functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/wrappers/">Wrappers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Wrappers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -240,11 +239,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/wrappers/action_wrappers/">Action Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/wrappers/observation_wrappers/">Observation Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/wrappers/reward_wrappers/">Reward Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../api/wrappers/vector_wrappers/">Vector wrappers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/vector/">Vector environments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vector environments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../api/vector/wrappers/">Vector Wrappers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/vector/">Vectorize</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vectorize</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/vector/wrappers/">Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/vector/async_vector_env/">AsyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/vector/sync_vector_env/">SyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/vector/utils/">Utility functions</a></li>
@@ -414,6 +412,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/training_agents/FrozenLake_tuto/">Frozenlake benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/third-party-tutorials/">Third-Party Tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.comet.com/docs/v2/integrations/ml-frameworks/gymnasium/?utm_source=gymnasium&amp;utm_medium=partner&amp;utm_campaign=partner_gymnasium_2023&amp;utm_content=docs_gymnasium">Comet Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -578,19 +577,20 @@
     <span class="n">num_envs</span><span class="p">:</span> <span class="nb">int</span>
 
     <span class="n">_np_random</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_np_random_seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="VectorEnv.reset">
 <a class="viewcode-back" href="../../../../api/vector/#gymnasium.vector.VectorEnv.reset">[docs]</a>
     <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">options</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ObsType</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>  <span class="c1"># type: ignore</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset all parallel environments and return a batch of initial observations and info.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            seed: The environment reset seeds</span>
+<span class="sd">            seed: The environment reset seed</span>
 <span class="sd">            options: If to return the options</span>
 
 <span class="sd">        Returns:</span>
@@ -609,7 +609,7 @@
 <span class="sd">            {}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="n">seeding</span><span class="o">.</span><span class="n">np_random</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random_seed</span> <span class="o">=</span> <span class="n">seeding</span><span class="o">.</span><span class="n">np_random</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VectorEnv.step">
@@ -653,6 +653,8 @@
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 
+<div class="viewcode-block" id="VectorEnv.render">
+<a class="viewcode-back" href="../../../../api/vector/#gymnasium.vector.VectorEnv.render">[docs]</a>
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">RenderFrame</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the rendered frames from the parallel environments.</span>
 
@@ -661,7 +663,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="si">}</span><span class="s2"> render function is not implemented.&quot;</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="VectorEnv.close">
 <a class="viewcode-back" href="../../../../api/vector/#gymnasium.vector.VectorEnv.close">[docs]</a>
@@ -694,6 +697,20 @@
         <span class="k">pass</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">np_random_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the environment&#39;s internal :attr:`_np_random_seed` that if not set will first initialise with a random int as seed.</span>
+
+<span class="sd">        If :attr:`np_random_seed` was set directly instead of through :meth:`reset` or :meth:`set_np_random_through_seed`,</span>
+<span class="sd">        the seed will take the value -1.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: the seed of the current `np_random` or -1, if the seed of the rng is unknown</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random_seed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random_seed</span> <span class="o">=</span> <span class="n">seeding</span><span class="o">.</span><span class="n">np_random</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random_seed</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">np_random</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the environment&#39;s internal :attr:`_np_random` that if not set will initialise with a random seed.</span>
 
@@ -701,12 +718,13 @@
 <span class="sd">            Instances of `np.random.Generator`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="n">seeding</span><span class="o">.</span><span class="n">np_random</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random_seed</span> <span class="o">=</span> <span class="n">seeding</span><span class="o">.</span><span class="n">np_random</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span>
 
     <span class="nd">@np_random</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">np_random</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_np_random</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_np_random_seed</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">unwrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -838,9 +856,12 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="VectorWrapper.render">
+<a class="viewcode-back" href="../../../../api/vector/wrappers/#gymnasium.vector.VectorWrapper.render">[docs]</a>
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">RenderFrame</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the render mode from the base vector environment.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span></div>
+
 
 <div class="viewcode-block" id="VectorWrapper.close">
 <a class="viewcode-back" href="../../../../api/vector/wrappers/#gymnasium.vector.VectorWrapper.close">[docs]</a>
@@ -923,7 +944,20 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">render_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">RenderFrame</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the `render_mode` from the base environment.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">render_mode</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">render_mode</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">np_random</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the environment&#39;s internal :attr:`_np_random` that if not set will initialise with a random seed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Instances of `np.random.Generator`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">np_random</span>
+
+    <span class="nd">@np_random</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">np_random</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">np_random</span> <span class="o">=</span> <span class="n">value</span></div>
 
 
 
@@ -943,7 +977,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ObsType</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Modifies the observation returned from the environment ``reset`` using the :meth:`observation`.&quot;&quot;&quot;</span>
         <span class="n">observations</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span> <span class="n">infos</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">observations</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span> <span class="n">infos</span>
 
     <span class="k">def</span> <span class="nf">step</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="n">ActType</span>
@@ -951,23 +985,26 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Modifies the observation returned from the environment ``step`` using the :meth:`observation`.&quot;&quot;&quot;</span>
         <span class="n">observations</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">terminations</span><span class="p">,</span> <span class="n">truncations</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">observation</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">observations</span><span class="p">(</span><span class="n">observations</span><span class="p">),</span>
             <span class="n">rewards</span><span class="p">,</span>
             <span class="n">terminations</span><span class="p">,</span>
             <span class="n">truncations</span><span class="p">,</span>
             <span class="n">infos</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">:</span> <span class="n">ObsType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ObsType</span><span class="p">:</span>
+<div class="viewcode-block" id="VectorObservationWrapper.observations">
+<a class="viewcode-back" href="../../../../api/vector/wrappers/#gymnasium.vector.VectorObservationWrapper.observations">[docs]</a>
+    <span class="k">def</span> <span class="nf">observations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observations</span><span class="p">:</span> <span class="n">ObsType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ObsType</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines the vector observation transformation.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            observation: A vector observation from the environment</span>
+<span class="sd">            observations: A vector observation from the environment</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            the transformed observation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+</div>
 
 
 
@@ -1147,7 +1184,7 @@
         })()
       </script>
 
-    <script src="../../../../_static/documentation_options.js?v=a4d19d35"></script>
+    <script src="../../../../_static/documentation_options.js?v=ed34540e"></script>
     <script src="../../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/scripts/furo.js?v=7660844c"></script>
